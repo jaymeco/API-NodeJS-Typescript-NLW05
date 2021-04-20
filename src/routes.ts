@@ -1,26 +1,11 @@
 import { Router } from 'express';
-import { getCustomRepository } from 'typeorm';
-import { SettingRepository } from './repositories/SettingRepository';
+import { SettingsController } from './controllers/SettingsController';
 
+const settingsController = new SettingsController();
 const routes = Router();
 
 routes.post('/settings', async (request, response)=>{
-  try {
-    const { chat, username } = request.body;
-
-    const settingRepository = getCustomRepository(SettingRepository);
-
-    const setting = await settingRepository.create({ chat, username });
-
-    await settingRepository.save(setting);
-
-    return response.status(201).json(setting);
-  } catch (error) {
-    return response.status(400).json({
-      message: error.message
-    })
-  }
-
+  return settingsController.create(request, response);
 })
 
 export { routes };
