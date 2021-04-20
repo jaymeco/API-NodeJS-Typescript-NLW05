@@ -1,4 +1,4 @@
-import { Column, PrimaryColumn, CreateDateColumn, Entity } from "typeorm";
+import { Column, PrimaryColumn, CreateDateColumn, Entity, UpdateDateColumn } from "typeorm";
 
 @Entity('settings')
 export class Setting {
@@ -15,6 +15,6 @@ export class Setting {
   @CreateDateColumn()
   public created_at: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   public updated_at: Date;
 }
